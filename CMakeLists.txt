@@ -1,21 +1,12 @@
 cmake_minimum_required (VERSION 3.20 FATAL_ERROR)
 
-find_package(cetmodules REQUIRED)
-project(osclib VERSION 1.2.0)
+project(osclib VERSION 1.2.1)
 
-include(CetCMakeEnv)
-cet_cmake_env()
-
-cet_set_compiler_flags(DIAGS CAUTIOUS
-  WERROR 
-  NO_UNDEFINED
-  EXTRA_FLAGS -pedantic -Wno-unused-local-typedefs
-)
-
-cet_report_compiler_flags(REPORT_THRESHOLD VERBOSE)
+add_library(OscLib_Options INTERFACE)
+target_compile_options(OscLib_Options INTERFACE -Werror -pedantic -Wno-unused-local-typedefs)
 
 option(STAN "Build with Stan dependency")
-option(USE_STAN_THREADS "Use threading with Stan?" True)
+option(USE_STAN_THREADS "Use threading with Stan?" ON)
 
 find_package(ROOT REQUIRED)
 find_package(Eigen3 REQUIRED)
@@ -37,5 +28,3 @@ if(STAN)
 endif()
 
 add_subdirectory(OscLib)
-
-cet_cmake_config()

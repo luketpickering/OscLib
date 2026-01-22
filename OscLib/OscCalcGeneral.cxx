@@ -6,7 +6,7 @@
 /////////////////////////////////////////////////////////////////////////////
 #include "OscLib/OscCalcGeneral.h"
 
-#include <boost/serialization/array_wrapper.hpp>
+#include "boost/serialization/array_wrapper.hpp"
 
 #pragma GCC diagnostic push
 #ifndef __clang__
@@ -16,8 +16,8 @@
 #pragma GCC diagnostic ignored "-Wdeprecated-copy"
 #endif
 #endif
-#include <boost/numeric/ublas/vector.hpp>
-#include <boost/numeric/ublas/matrix.hpp>
+#include "boost/numeric/ublas/vector.hpp"
+#include "boost/numeric/ublas/matrix.hpp"
 #pragma GCC diagnostic pop
 
 #include <vector>

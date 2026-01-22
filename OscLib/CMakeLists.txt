@@ -3,8 +3,8 @@ if (STAN)
   set (STAN_TARGETS stan_math::stan_math SUNDIALS::kinsol_shared TBB::tbb)
 endif (STAN)
 
-cet_make_library(LIBRARY_NAME OscLib
-  SOURCE
+add_library(OscLib
+  SHARED
   EarthModel.cxx
   IOscCalc.cxx
   IOscCalcSterile.cxx
@@ -28,12 +28,14 @@ cet_make_library(LIBRARY_NAME OscLib
   PMNS_Sterile.cxx
   PMNS.cxx
   PMNSOpt.cxx
-  LIBRARIES
-  GSL::gsl
-  ROOT::Core
-  ROOT::Hist
-  ${STAN_TARGETS}
 )
 
-install_headers()
-install_source()
+target_include_directories(OscLib PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
+  $<INSTALL_INTERFACE:include>
+  )
+target_link_libraries(OscLib PUBLIC ROOT::Core ROOT::Hist Eigen3::Eigen GSL::gsl Boost::boost ${STAN_TARGETS})
+target_link_libraries(OscLib PRIVATE OscLib_Options)
+
+
+
