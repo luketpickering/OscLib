@@ -1,8 +1,9 @@
 cmake_minimum_required (VERSION 3.20 FATAL_ERROR)
 
-project(OscLib VERSION 1.2.0)
+project(osclib VERSION 1.3.0)
 
 find_package(cetmodules REQUIRED)
+
 include(CetCMakeEnv)
 cet_cmake_env()
 
